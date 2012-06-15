@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <launch>
 
   <!-- "cam3d" should uniquely identify the device. All topics are pushed down

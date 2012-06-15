@@ -19,3 +19,19 @@ rosrun image_view image_view image:=/cob_people_detection/people_detection_image
 
 4. Service Call with people location response
 rosservice call /cob_people_detection/detect_people
+
+
+
+roslaunch cob_people_detection people_detection.launch
+
+rosrun cob_people_detection people_detection_client 
+	-choose (1) and press c to capture a new face
+	-choose (2) to recognise a face that is already in the directory
+
+The images are saved in /cob_people_perception/cob_people_detection/common/files/windows/TrainingData/. (as .bmp and there are also 2 xml files)
+ 
+rosrun image_view image_view image:=/cob_people_detection/face_detection/face_detection_image  
+
+rosrun image_view image_view image:=/cob_people_detection/people_detection_image 
+
+if you call the service rosservice call /cob_people_detection/detect_people the id of the face is people_list/detections/label
