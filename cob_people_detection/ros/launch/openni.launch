@@ -4,6 +4,7 @@
 
   <!-- "cam3d" should uniquely identify the device. All topics are pushed down
        into the "cam3d" namespace, and it is prepended to tf frame ids. -->
+  <!--arg name="cam3d" default="head_cam3d" /-->
   <arg name="cam3d" default="cam3d" />
   <arg name="rgb_frame_id"   default="/$(arg cam3d)_rgb_optical_frame" />
   <arg name="depth_frame_id" default="/$(arg cam3d)_depth_optical_frame" />
