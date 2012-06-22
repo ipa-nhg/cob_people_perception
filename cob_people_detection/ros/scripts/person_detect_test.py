@@ -23,9 +23,17 @@ class DetectPeopleScript(script):
 	def Initialize(self):
 		self.srv_people_detection = '/cob_people_detection/detect_people'
 		self.srv_recognize = '/cob_people_detection/face_detection/recognize_service_server'
+		
+		#self.name = name
+		self.name = "Tobias"
 
 		
 	def Run(self):
+
+		if self.name != "":
+                        name = self.name
+                #elif type(userdata.name) is str:
+                        #name = userdata.name
 
 		try:
 			rospy.wait_for_service(self.srv_recognize)
@@ -45,9 +53,8 @@ class DetectPeopleScript(script):
 			print "Service call failed: %s"%e
 			return 'failed' 
 
-		people = PeopleDetectionArray()
 		#while (True):
-		for i in range (1,50):
+		for i in range (1,500):
 			rospy.sleep(2)
 			try:
 				rospy.wait_for_service(self.srv_people_detection,10)
@@ -69,12 +76,13 @@ class DetectPeopleScript(script):
 
 
 			for item in res.people_list.detections:
-				sss.say(["Hi " + item.label + "."],False)
-				print "You are in x= %s" %item.pose.pose.position.x
-				print " y= %s" %item.pose.pose.position.y
-				print " z= %s" %item.pose.pose.position.z
-				people = copy.deepcopy(item)
-
+				if (item.label == name):
+					sss.say(["Hi " + item.label + "."],False)
+					print "You are in x= %s" %item.pose.pose.position.x
+					print " y= %s" %item.pose.pose.position.y
+					print " z= %s" %item.pose.pose.position.z
+				else:
+					sss.say(["You are " + item.label + " and I am looking for "+ name],False)
 
 		try:
 			recognize_service = rospy.ServiceProxy(self.srv_recognize, Recognition)
