@@ -47,7 +47,7 @@ class DetectPeopleScript(script):
 
 		people = PeopleDetectionArray()
 		#while (True):
-		for i in range (1,50):
+		for i in range (1,500):
 			rospy.sleep(2)
 			try:
 				rospy.wait_for_service(self.srv_people_detection,10)
